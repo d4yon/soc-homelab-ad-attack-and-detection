@@ -74,7 +74,7 @@ This homelab was built as part of my career transition into cybersecurity. I'm c
 
 ---
 
-## 🏗️2. Architecture
+## 🌐2. Architecture
 
 This lab is built around a strictly segmented network architecture, designed to simulate a realistic enterprise environment. Each zone serves a dedicated purpose and communicates with others only through explicitly defined firewall rules enforced by a central perimeter firewall.
 
@@ -82,7 +82,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 
 ---
 
-### 2.1 🔴 WAN Zone (Simulated Internet)
+### 2.1 🔴WAN Zone (Simulated Internet)
 
 **Role:** Represents the outside world — the Internet and its threats.
 
@@ -99,7 +99,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 
 ---
 
-### 2.2 🔥 Perimeter Zone – pfSense Firewall
+### 2.2 🔥Perimeter Zone – pfSense Firewall
 
 **Role:** First line of defense. Enforces traffic filtering between all zones and acts as the lab's central router.
 
@@ -114,7 +114,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 
 #### 🛡️Firewall Rules
 
-**🔵AD LAN interface:**
+🔵**AD LAN interface:**
 
 | #   | Source       | Destination    | Protocol/Port | Action  | Purpose                             |
 | --- | ------------ | -------------- | ------------- | ------- | ----------------------------------- |
@@ -124,7 +124,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 | 4   | 10.0.10.0/24 | 172.16.30.0/24 | any           | ❌ Block | Isolate AD users from DMZ           |
 | 5   | any          | any            | any           | ❌ Block | Implicit defaul                     |
 
-🔶**SOC LAN interface :**
+🔶**SOC LAN interface:**
 
 | #   | Source       | Destination    | Protocol/Port | Action  | Purpose                               |
 | --- | ------------ | -------------- | ------------- | ------- | ------------------------------------- |
@@ -133,7 +133,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 | 3   | 10.0.20.0/24 | 172.16.30.0/24 | any           | ❌ Block | Isolate SIEM from DMZ                 |
 | 4   | any          | any            | any           | ❌ Block | Implicit default deny                 |
 
-🟪**DMZ interface :**
+🟪**DMZ interface:**
 
 | #   | Source | Destination | Protocol/Port | Action | Purpose |
 | --- | ------ | ----------- | ------------- | ------ | ------- |
@@ -145,7 +145,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 
 ---
 
-### 2.3 🔵 Active Directory Zone (10.0.10.0/24)
+### 2.3 🔵Active Directory Zone (10.0.10.0/24)
 
 **Role:** Simulates an organization's internal environment with centralized authentication and endpoint management.
 
@@ -183,7 +183,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 
 ---
 
-### 2.4 🔶 SOC Zone (10.0.20.0/24)
+### 2.4 🔶SOC Zone (10.0.20.0/24)
 
 **Role:** Core monitoring and detection layer. Centralizes log collection, event correlation, and alerting across the entire lab.
 
@@ -208,7 +208,7 @@ This lab is built around a strictly segmented network architecture, designed to 
 
 ---
 
-### 2.5 🟪 DMZ (172.16.30.0/24) 
+### 2.5 🟪DMZ (172.16.30.0/24) 
 
 **Role:** Semi-exposed zone intended to host services reachable from the simulated Internet.
 
@@ -222,7 +222,7 @@ The DMZ is strictly isolated from both the AD and SOC zones — compromise of a 
 
 ---
 
-### 2.6 🔐 Traffic Flow Summary
+### 2.6 🔐Traffic Flow Summary
 
 | Flow                                     | Status                 | Notes                              |
 | ---------------------------------------- | ---------------------- | ---------------------------------- |
@@ -235,7 +235,7 @@ The DMZ is strictly isolated from both the AD and SOC zones — compromise of a 
 
 ---
 
-## 🛠️3. Technologies Used
+## 💻3. Technologies Used
 
 ### 3.1 Virtualisation & Infrastructure
 
@@ -287,7 +287,7 @@ Agents installed on Windows endpoints (DC01, WKS01) collect Windows Event Logs a
 3. **Manager** → Indexer (storage & search engine)
 4. **Dashboard** → Indexer (queries)
 
-<img width="1147" height="621" alt="image" src="https://github.com/user-attachments/assets/c7868691-d5fb-4d4d-8468-f629a8b293ec" />
+<img width="1385" height="738" alt="image" src="https://github.com/user-attachments/assets/5da64d98-fe33-4dad-bb05-c9e62bab21f1" />
 
 #### What does Sysmon bring to the table ?
 
@@ -322,7 +322,7 @@ Scenarios are designed to chain into each other — the access gained in Scenari
 
 ### 4.1 RDP Bruteforce Attack
 
-**📁 [Documentation complète](./scenarios/01-rdp-bruteforce/)**
+**📁 [Complete documentation](https://github.com/d4yon/soc-homelab-ad-attack-and-detection/blob/main/attack-scenarios/RDP_bruteforce.md)**
 
 #### Summary
 An external attacker discovers an RDP endpoint exposed on the WAN interface via NAT port forwarding and launches a dictionary attack against a domain user account. The scenario is demonstrated twice. Once without an account lockout policy (bruteforce succeeds, RDP session opened) and with one enforced (account locked after 5 attempts, attacker blocked).
@@ -390,6 +390,6 @@ Potential extensions: DCSync · Web Application attacks (DVVA) · IDS/IPS integr
 **Wassim Mbarki**  
 Bachelor student in Systems & Network Security · Aspiring SOC Analyst
 
-📧 [email](wassim.mbarki@condorcet.be) · 💼 [LinkedIn](https://www.linkedin.com/in/wassim-mbarki-922a0513a/) · 🐙 [GitHub](https://github.com/repos?q=owner%3A%40me)
+📧 [email](mailto:wassim.mbarki@condorcet.be) · 💼 [LinkedIn](https://www.linkedin.com/in/wassim-mbarki-922a0513a/) · 🐙 [GitHub](https://github.com/repos?q=owner%3A%40me)
 
-*Last updated: 11.03.26*
+*Last updated: 12.03.26*
